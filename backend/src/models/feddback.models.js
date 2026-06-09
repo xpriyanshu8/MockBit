@@ -1,29 +1,26 @@
 const mongoose = require("mongoose");
 
-const FeedbackSchema = new mongoose.Schema({
-  sessionId: { 
-    type: mongoose.Schema.Types.ObjectId, 
-    ref: 'Session', 
-    required: true 
+const feedbackSchema = new mongoose.Schema({
+  sessionId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Session',
+    required: true
   },
-  question: { 
-    type: String, 
-    required: true 
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
   },
-  answer: { 
-    type: String, 
-    required: true 
+  question: { type: String, required: true },
+  answer:   { type: String, required: true },
+  aiFeedback: {
+    clarity:       { type: String },
+    structure:     { type: String },
+    technicalDepth:{ type: String },
+    suggestion:    { type: String }
   },
-  aiResponse: { 
-    type: String, 
-    required: true 
-  },
-  rating: { 
-    type: Number, 
-    required: true, 
-    min: 1, 
-    max: 5 
-  }
+  rawFeedback: { type: String },
+  score: { type: Number, default: 0 }
 }, { timestamps: true });
 
 const Feedback = mongoose.model('Feedback', FeedbackSchema);

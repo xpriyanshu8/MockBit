@@ -1,19 +1,15 @@
 const mongoose = require("mongoose");
 
-const SessionSchema= new mongoose.Schema({
-    userId:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required:true
-    },
-    topic: { 
-    type: String, 
-    required: true, 
-    trim: true 
+const sessionSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
   },
-  date: { 
-    type: Date, 
-    default: Date.now 
+  topic: {
+    type: String,
+    enum: ['DSA', 'OOP', 'Projects', 'HR', 'OS', 'DBMS'],
+    required: true
   }
 }, { timestamps: true });
 
